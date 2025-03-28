@@ -5,6 +5,7 @@
 !/loongarch64/
 !/mips64/
 !/riscv32/
+!/x86/
 !*.c
 !*.s
 !*.md
