@@ -1,0 +1,210 @@
+calc(Data, Data):
+        pushq   %rbp
+        movq    %rsp, %rbp
+
+        movq    %rdi, -24(%rbp)
+
+        movl    16(%rbp), %edx      # &a
+        movl    80(%rbp), %eax      # &b
+
+        addl    %eax, %edx          
+        movq    -24(%rbp), %rax
+        movl    %edx, (%rax)
+        movsd   24(%rbp), %xmm1
+        movsd   88(%rbp), %xmm0
+        mulsd   %xmm1, %xmm0
+        movsd   32(%rbp), %xmm2
+        movsd   96(%rbp), %xmm1
+        mulsd   %xmm2, %xmm1
+        subsd   %xmm1, %xmm0
+        movq    -24(%rbp), %rax
+        movsd   %xmm0, 8(%rax)
+        movsd   24(%rbp), %xmm1
+        movsd   96(%rbp), %xmm0
+        mulsd   %xmm0, %xmm1
+        movsd   32(%rbp), %xmm2
+        movsd   88(%rbp), %xmm0
+        mulsd   %xmm2, %xmm0
+        addsd   %xmm1, %xmm0
+        movq    -24(%rbp), %rax
+        movsd   %xmm0, 16(%rax)
+        movss   40(%rbp), %xmm1
+        movss   104(%rbp), %xmm0
+        addss   %xmm1, %xmm0
+        movss   .LC0(%rip), %xmm1
+        divss   %xmm1, %xmm0
+        movq    -24(%rbp), %rax
+        movss   %xmm0, 24(%rax)
+        movq    48(%rbp), %rdx
+        movq    112(%rbp), %rax
+        imulq   %rax, %rdx
+        movq    -24(%rbp), %rax
+        movq    %rdx, 32(%rax)
+        movq    56(%rbp), %rcx
+        movq    48(%rbp), %rdx
+        movq    120(%rbp), %rax
+        imulq   %rdx, %rax
+        leaq    (%rcx,%rax), %rdx
+        movq    -24(%rbp), %rax
+        movq    %rdx, 40(%rax)
+        movl    76(%rbp), %edx
+        movl    140(%rbp), %eax
+        addl    %eax, %edx
+        movq    -24(%rbp), %rax
+        movl    %edx, 60(%rax)
+        movq    -24(%rbp), %rax
+        movl    60(%rax), %eax
+        cmpl    $10, %eax
+        jle     .L2
+        movq    -24(%rbp), %rax
+        movl    $10, 60(%rax)
+.L2:
+        movl    $0, -4(%rbp)
+        jmp     .L3
+.L6:
+        movl    76(%rbp), %eax
+        cmpl    %eax, -4(%rbp)
+        jge     .L4
+        movl    -4(%rbp), %eax
+        cltq
+        movzbl  64(%rbp,%rax), %eax
+        jmp     .L5
+.L4:
+        movl    76(%rbp), %eax
+        movl    -4(%rbp), %edx
+        subl    %eax, %edx
+        movslq  %edx, %rax
+        movzbl  128(%rbp,%rax), %eax
+.L5:
+        movq    -24(%rbp), %rcx
+        movl    -4(%rbp), %edx
+        movslq  %edx, %rdx
+        movb    %al, 48(%rcx,%rdx)
+        addl    $1, -4(%rbp)
+.L3:
+        movq    -24(%rbp), %rax
+        movl    60(%rax), %eax
+        cmpl    %eax, -4(%rbp)
+        jl      .L6
+        movq    -24(%rbp), %rax
+        movl    60(%rax), %eax
+        movq    -24(%rbp), %rdx
+        cltq
+        movb    $0, 48(%rdx,%rax)
+        nop
+        movq    -24(%rbp), %rax
+        popq    %rbp
+        ret
+foo(Data, Data, Data):
+        pushq   %rbp
+        movq    %rsp, %rbp
+        pushq   %rbx
+        subq    $88, %rsp
+        movq    %rdi, -24(%rbp)
+        movq    -24(%rbp), %rdx
+
+        subq    $64, %rsp
+        movq    %rsp, %rax
+        
+        movq    80(%rbp), %rcx
+        movq    88(%rbp), %rbx
+        movq    %rcx, (%rax)
+        movq    %rbx, 8(%rax)
+        movq    96(%rbp), %rcx
+        movq    104(%rbp), %rbx
+        movq    %rcx, 16(%rax)
+        movq    %rbx, 24(%rax)
+        movq    112(%rbp), %rcx
+        movq    120(%rbp), %rbx
+        movq    %rcx, 32(%rax)
+        movq    %rbx, 40(%rax)
+        movq    128(%rbp), %rcx
+        movq    136(%rbp), %rbx
+        movq    %rcx, 48(%rax)
+        movq    %rbx, 56(%rax)
+        subq    $64, %rsp
+        movq    %rsp, %rax
+        movq    16(%rbp), %rcx
+        movq    24(%rbp), %rbx
+        movq    %rcx, (%rax)
+        movq    %rbx, 8(%rax)
+        movq    32(%rbp), %rcx
+        movq    40(%rbp), %rbx
+        movq    %rcx, 16(%rax)
+        movq    %rbx, 24(%rax)
+        movq    48(%rbp), %rcx
+        movq    56(%rbp), %rbx
+        movq    %rcx, 32(%rax)
+        movq    %rbx, 40(%rax)
+        movq    64(%rbp), %rcx
+        movq    72(%rbp), %rbx
+        movq    %rcx, 48(%rax)
+        movq    %rbx, 56(%rax)
+        movq    %rdx, %rdi
+        call    calc(Data, Data)
+        subq    $-128, %rsp
+        movq    -24(%rbp), %rbx
+        leaq    -96(%rbp), %rcx
+        movq    -24(%rbp), %rax
+        subq    $64, %rsp
+        movq    %rsp, %rdx
+        movq    (%rax), %rsi
+        movq    8(%rax), %rdi
+        movq    %rsi, (%rdx)
+        movq    %rdi, 8(%rdx)
+        movq    16(%rax), %rsi
+        movq    24(%rax), %rdi
+        movq    %rsi, 16(%rdx)
+        movq    %rdi, 24(%rdx)
+        movq    32(%rax), %rsi
+        movq    40(%rax), %rdi
+        movq    %rsi, 32(%rdx)
+        movq    %rdi, 40(%rdx)
+        movq    48(%rax), %rsi
+        movq    56(%rax), %rdi
+        movq    %rsi, 48(%rdx)
+        movq    %rdi, 56(%rdx)
+        subq    $64, %rsp
+        movq    %rsp, %rax
+        movq    144(%rbp), %rsi
+        movq    152(%rbp), %rdi
+        movq    %rsi, (%rax)
+        movq    %rdi, 8(%rax)
+        movq    160(%rbp), %rsi
+        movq    168(%rbp), %rdi
+        movq    %rsi, 16(%rax)
+        movq    %rdi, 24(%rax)
+        movq    176(%rbp), %rsi
+        movq    184(%rbp), %rdi
+        movq    %rsi, 32(%rax)
+        movq    %rdi, 40(%rax)
+        movq    192(%rbp), %rsi
+        movq    200(%rbp), %rdi
+        movq    %rsi, 48(%rax)
+        movq    %rdi, 56(%rax)
+        movq    %rcx, %rdi
+        call    calc(Data, Data)
+        subq    $-128, %rsp
+        movq    -96(%rbp), %rax
+        movq    -88(%rbp), %rdx
+        movq    %rax, (%rbx)
+        movq    %rdx, 8(%rbx)
+        movq    -80(%rbp), %rax
+        movq    -72(%rbp), %rdx
+        movq    %rax, 16(%rbx)
+        movq    %rdx, 24(%rbx)
+        movq    -64(%rbp), %rax
+        movq    -56(%rbp), %rdx
+        movq    %rax, 32(%rbx)
+        movq    %rdx, 40(%rbx)
+        movq    -48(%rbp), %rax
+        movq    -40(%rbp), %rdx
+        movq    %rax, 48(%rbx)
+        movq    %rdx, 56(%rbx)
+        nop
+        movq    -24(%rbp), %rax
+        movq    -8(%rbp), %rbx
+        leave
+        ret
+.LC0:
+        .long   1073741824
