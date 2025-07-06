@@ -31,4 +31,10 @@ void py_numpy_mul(Matrix *A, Matrix *B, Matrix *C) {
 
   read_matrix(output_file, C);
   fclose(output_file);
+
+  // clear the files
+  input_file = fopen(input_path, "w");
+  fclose(input_file);
+  output_file = fopen(output_path, "w");
+  fclose(output_file);
 }
