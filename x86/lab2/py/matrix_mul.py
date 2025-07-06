@@ -38,7 +38,7 @@ def main():
         C = matrix_multiply(A, B)
         with open(output_path, 'w') as f:
             for row in C:
-                f.write(" ".join(f"{x:.6g}" for x in row) + "\n")
+                f.write(" ".join(f"{x:.6f}" for x in row) + "\n")
         print(f"Matrix multiplication completed. Result saved to {
               output_path}")
     except FileNotFoundError:

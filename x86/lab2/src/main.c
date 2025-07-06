@@ -4,7 +4,7 @@
 
 Matrix A, B, C_v[7];
 
-int TestCase[] = {0};
+int TestCase[] = {0, 1, 2, 3, 4, 5, 6};
 int TestLen;
 double st[7], ed[7];
 
