@@ -26,7 +26,7 @@ $(foreach file,$(MARCH_FILES),\
 	$(eval $(OBJ_DIR)/$(file:.c=.o): EXTRA_CFLAGS += -march=native))
 
 $(foreach file,$(O3_FILES),\
-	$(eval $(OBJ_DIR)/$(file:.c=.o): EXTRA_CFLAGS += -O3 -mfma))
+	$(eval $(OBJ_DIR)/$(file:.c=.o): EXTRA_CFLAGS += -O3 -mfma -ffast-math))
 
 $(foreach file,$(AVX512_FILES),\
 	$(eval $(OBJ_DIR)/$(file:.c=.o): EXTRA_CFLAGS += -mavx512f -mavx512dq))

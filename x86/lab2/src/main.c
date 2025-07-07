@@ -31,11 +31,11 @@ int checkEnv() {
         return 0;
     }
 
-    long cache_line_size = sysconf(_SC_LEVEL1_DCACHE_LINESIZE);
-    long l1_cache_size = sysconf(_SC_LEVEL1_DCACHE_SIZE);
-    long l2_cache_size = sysconf(_SC_LEVEL2_CACHE_SIZE);
+    // long cache_line_size = sysconf(_SC_LEVEL1_DCACHE_LINESIZE);
+    // long l1_cache_size = sysconf(_SC_LEVEL1_DCACHE_SIZE);
+    // long l2_cache_size = sysconf(_SC_LEVEL2_CACHE_SIZE);
     // block_size = (int)sqrt(1.0 * l1_cache_size / (3 * sizeof(double)));
-    block_size = 64;
+    block_size = 128;
     printf("block size: %d\n", block_size);
     return 1;
 }
